@@ -23,7 +23,7 @@ const rows = [
 ];
 
 export default function UserFaq(props) {
-  const [userProfile, setUserProfile] = React.useState({});
+  const [userProfile, setUserProfile] = React.useState([]);
 
   const getUserProfile = async () => {
     const response = await axios.get("https://sandbox.practical.me/api/faq", {
@@ -49,28 +49,27 @@ export default function UserFaq(props) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Order ID</TableCell>
-            <TableCell align="right">ID</TableCell>
+            <TableCell>ID</TableCell>
+            <TableCell align="right">Question</TableCell>
+            <TableCell align="right">Answer</TableCell>
             <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {userProfile.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.order_id}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.id}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
+          {userProfile &&
+            userProfile.map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="right">{row.question}</TableCell>
+                <TableCell align="right">{row.answer}</TableCell>
+                <TableCell align="right">{row.description}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

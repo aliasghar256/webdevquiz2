@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       { user.auth_token===null ? (
       <Auth user={setUser} />) : (
-        showFaq ?(
+        !showFaq ?(
         <div>
           <UserTable token={user.auth_token} />
           <button onClick={handleShowFaq}>show FAQ</button>
